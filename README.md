@@ -1,18 +1,32 @@
-#unveil.js
-###A very lightweight plugin to lazy load images for jQuery or Zepto.js
+#malaise.js
+###A very lightweight plugin to lazy load images for jQuery
 
+This plugin boosts performance delaying the loading of images by waitig until the user scrolls to them to load.
 
+If defined Malaise will default to using images defined for retina screens.
 
-Most of us are familiar with the [Lazy Load](http://www.appelsiini.net/projects/lazyload) plugin by [Mika Tuupola](http://www.appelsiini.net/).
-This plugin is very useful and it boosts performance delaying loading of images in long web pages because images outside of viewport (visible part of web page) won't be loaded until the user scrolls to them.
-Lazy Load has some cool options such as custom effects, container, events or data attribute. If you're not gonna use any of them you can reduce the file size by leaving just the essential code to show the images.
-That's what I did and this is my lightweight version of Lazy Load with support for serving high-resolution images to devices with retina displays - less than 1k.
+If you don't define retina images, Malaise allows for responsive images by swapping to mobile versions at a breakpoint.
 
-Visit unveil's [project page](http://luis-almeida.github.com/unveil/) to read the documentation and see the demo.
+###Options
+* offset: *defualt: 0* - The distance in pixels you want images to load relative to the visible part of the screen.
+* path: *defualt: ''* - The base path for the images you are loading
+* loadedClass: *defualt: 'malaise-loaded'* - Class added to loaded images, useful for animating in images.
+* breakpoint: *defualt: '767px'* - The min-width to load in mobile versions of images
+* container: *defualt: window* - The scrolling container your elements are in
+* throttle: *defualt: 100* - Resize and scroll throttling.
+* callback - If you pass in a function malaise will call it after an image is loaded.
+
+###Markup
+* `malaise-bg` class to load background-images instead of src paths.
+* `data-src-retina` atribute for retina images
+* `data-src-mobile` atribute for mobile images
+* `data-src` atribute for normal images
+
+Forked from [unveil](http://luis-almeida.github.com/unveil/) with new features and options.
 
 
 ###Browser support
-Compatible with All Browsers and IE7+.
+Compatible with All Browsers and IE7+. Retina detection IE11+
 
 
 ###License
