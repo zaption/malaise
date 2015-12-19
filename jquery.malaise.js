@@ -69,12 +69,13 @@
 
 		var showImages = function() {
 			if (!unLoaded.length) return;
+			var windowTop = $window.scrollTop();
+			var windowBottom = windowTop + windowHeight;
+			var containerTop = $container.is($window) ? 0 : windowTop - $container.offset().top;
+
 			var onScreen = unLoaded.filter(function() {
 				var $element = $(this);
 				if ($element.is(':hidden')) return;
-				var windowTop = $window.scrollTop();
-				var windowBottom = windowTop + windowHeight;
-				var containerTop = $container.is($window) ? 0 : windowTop - $container.offset().top;
 				var elementTop = $element.offset().top + containerTop;
 				var elementBottom = elementTop + $element.height();
 
@@ -124,7 +125,8 @@
 		$container.on({
 			"resize.malaise": throttle(resize),
 			"scroll.malaise": throttle(showImages),
-			"wakeup.malaise": showImages
+			"wakeup.malaise": showImages,
+			"touchend.malaise": showImages
 		});
 
 		showImages();
