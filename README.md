@@ -1,5 +1,5 @@
 #malaise.js
-###A very lightweight plugin to lazy load images for jQuery
+###A very lightweight plugin to responsively lazy load images for jQuery
 
 This plugin boosts performance by delaying the loading of images until the user scrolls near them.
 
@@ -32,4 +32,4 @@ Compatible with All Browsers and IE7+. Retina detection IE11+
 
 
 ###License
-Unveil is licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Malaise is licensed under the [MIT license](http://opensource.org/licenses/MIT).
