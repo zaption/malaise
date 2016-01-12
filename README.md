@@ -10,6 +10,7 @@ If you don't define retina images, Malaise allows for responsive images by swapp
 ###Options
 * offset: `defualt: 0` - The distance in pixels you want images to load relative to the visible part of the screen.
 * path: `defualt: ''` - The base path for the images you are loading.
+* selector: `defualt: .malaise` - The selector you want lazy load on.
 * loadedClass: `defualt: 'malaise-loaded'` - Class added to loaded images, useful for animating in images.
 * breakpoint: `defualt: '767px'` - The min-width to load in mobile versions of images.
 * container: `defualt: window` - The scrolling container your elements are in.
@@ -17,10 +18,11 @@ If you don't define retina images, Malaise allows for responsive images by swapp
 * callback - A function malaise will call it after an image is loaded.
 
 ###Markup
-* `malaise-bg` class to load background-images instead of src paths
 * `data-src-retina` atribute for retina images
 * `data-src-mobile` atribute for mobile images
 * `data-src` atribute for normal images
+
+For iframe, video, and image elements Malaise will loaded the path on the src attribute, for all other tags it will load as a background image path.
 
 Forked from [unveil](http://luis-almeida.github.com/unveil/) with new features and options.
 
