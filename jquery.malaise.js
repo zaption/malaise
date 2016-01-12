@@ -8,28 +8,28 @@
 
 ;(function($) {
 
-	$.fn.malaise = function(options) {
+	$.malaise = function(options) {
 
-		var backgroundImageClass = 'malaise-bg';
 		var desktopSource = 'data-src';
 		var mobileSource = 'data-src-mobile';
 		var retinaSource = 'data-src-retina';
-
-		var retina = window.devicePixelRatio >= 1.5;
-		var offset = offset || 0;
-		var unLoaded = this;
-		var allElements = this;
-		var loaded;
 
 		var opts = options || {};
 		var settings = $.extend({
 			offset: 0,
 			path: '',
+			selector: '.malaise',
 			loadedClass: 'malaise-loaded',
 			breakpoint: '767px',
 			container: window,
 			throttle: 100
         }, opts);
+
+		var retina = window.devicePixelRatio >= 1.5;
+		var offset = offset || 0;
+		var unLoaded = $(settings.selector);
+		var allElements = $(settings.selector);
+		var loaded;
 
         var $container = $(settings.container);
         var $window = $(window);
@@ -47,7 +47,7 @@
 			responsiveSources(transWidth);
         }
 
-		this.on('loadSourceAttribute', function() {
+		allElements.on('loadSourceAttribute', function() {
 			var source;
 
 			if (retina && this.hasAttribute(retinaSource)) source = retinaSource;
@@ -55,10 +55,10 @@
 			else source = desktopSource;
 			var newSource = this.getAttribute(source);
 			if (newSource) {
-				if ($(this).hasClass(backgroundImageClass)) {
-					this.setAttribute('style', 'background-image: url(' + settings.path + newSource + ')');
-				} else {
+				if ($(this).is('img, iframe, video')) {
 					this.setAttribute('src', settings.path + newSource);
+				} else {
+					this.setAttribute('style', 'background-image: url(' + settings.path + newSource + ')');
 				}
 				if (!$(this).hasClass(settings.loadedClass)) {
 					$(this).addClass(settings.loadedClass);
@@ -123,15 +123,15 @@
 		}
 
 		$container.on({
-			"resize.malaise": throttle(resize),
-			"scroll.malaise": throttle(showImages),
-			"wakeup.malaise": showImages,
-			"touchend.malaise": showImages
+			'resize.malaise': throttle(resize),
+			'scroll.malaise': throttle(showImages),
+			'wakeup.malaise': showImages,
+			'touchend.malaise': showImages
 		});
 
 		showImages();
 
-		return this;
+		return allElements;
 
 	};
 
